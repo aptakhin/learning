@@ -8,7 +8,7 @@ This application follows a traditional client-server architecture:
 ```
 ┌─────────────┐         ┌─────────────┐
 │  Frontend   │ ◄─────► │   Backend   │
-│             │  HTTP   │    (Rust)   │
+│             │  HTTP   │             │
 └─────────────┘         └─────────────┘
                               │
                               ▼
@@ -45,10 +45,21 @@ This application follows a traditional client-server architecture:
 5. Frontend updates UI based on responses
 
 ## Key Design Decisions
-<!-- Document important architectural choices -->
 
-### Why Rust for Backend?
-<!-- Add your reasoning -->
+First impelementation of UI will be very limited as it requires too big efforts to implement own infinite boards with embedding LLM chat engines and running of agents.
+
+Priorities:
+- Reliability
+- Responsibility
+- Speed
+
+Reliability of service forces to use durable worfklows for long and not very reliable backend processes (Temporal.io).
+
+We need to provide extensability to Entity types and rules over their manage (See [entities.md](./entities.md)), so could be useful to write new extensions code also in JavaScript/TypeScript.
+
+The initial idea was to make the fastest possible core HTTP/WebSocket api (possibly with Rust), and then all other extensions on top of that api. But for bootstraping simplicity the core now could be started also in NodeJS.
+
+As we prioritize speed, let's avoid ORM frameworks sticking to SQL-builders for PostgreSQL database.
 
 ### Containerization Strategy
 - Using Docker Compose for local development

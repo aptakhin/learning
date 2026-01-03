@@ -8,24 +8,15 @@
 - Test critical functionality
 - Follow language-specific best practices
 
-## Rust Backend Guidelines
-<!-- Rust-specific coding standards -->
+## Fastify Backend Guidelines
+
+Use Kysely for interaction with PostgreSQL in the way of SQL builder.
 
 ### Code Style
-- Follow standard Rust formatting (rustfmt)
-- Use idiomatic Rust patterns
-- Prefer explicit error handling over panics
-- Add documentation comments for public APIs
-
-### Error Handling
-- Use `Result<T, E>` for operations that can fail
-- Create custom error types when appropriate
-- Provide meaningful error messages
 
 ### Testing
 - Write unit tests for business logic
 - Add integration tests for API endpoints
-- Use `cargo test` to run test suite
 
 ## Frontend Guidelines
 <!-- Frontend-specific standards - update based on your framework -->
@@ -52,7 +43,7 @@
 <!-- When and how to document -->
 
 - Update README.md for setup changes
-- Document API changes in [docs/api.md](../docs/api.md)
+- Document API changes in swagger yaml file [docs/api.yaml](../docs/api.yaml)
 - Update architecture docs for significant changes
 
 ## Security

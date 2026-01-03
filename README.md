@@ -12,7 +12,6 @@ This project demonstrates a complete web application architecture with:
 ## Quick Start
 
 ```bash
-# Start the entire application with Docker
 docker-compose up -d --build
 
 # Or run components individually (see Setup Guide)
