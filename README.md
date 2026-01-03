@@ -1,11 +1,11 @@
 # Learning
 
-A full-stack application built with Rust backend and modern frontend.
+A full-stack application built with backend and modern frontend.
 
 ## Overview
 
 This project demonstrates a complete web application architecture with:
-- **Backend**: Rust-based server providing RESTful API
+- **Backend**: based server providing RESTful API
 - **Frontend**: Modern web interface
 - **Infrastructure**: Docker Compose for easy local development
 
@@ -32,7 +32,7 @@ See the [Setup Guide](docs/setup.md) for detailed installation and development i
 ```
 learning/
 ├── .claude/              # Claude Code configuration and context
-├── backend/              # Rust backend server
+├── backend/              # Typescript backend server
 ├── frontend/             # Frontend application
 ├── docs/                 # Documentation
 ├── docker-compose.yaml   # Docker Compose configuration
@@ -42,7 +42,7 @@ learning/
 ## Technology Stack
 
 ### Backend
-- **Language**: Rust
+- **Language**: Typescript
 - **Key Dependencies**: (Add as you include them)
 
 ### Frontend
@@ -57,7 +57,6 @@ learning/
 
 ### Prerequisites
 - Docker and Docker Compose
-- Rust (cargo)
 - Node.js (if applicable for frontend)
 
 ### Running Tests
@@ -73,13 +72,6 @@ cd frontend
 ```
 
 ### Code Quality
-
-```bash
-# Rust formatting and linting
-cd backend
-cargo fmt
-cargo clippy
-```
 
 ## Contributing
 
