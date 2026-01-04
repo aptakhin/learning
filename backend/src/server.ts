@@ -1,5 +1,6 @@
 import Fastify from 'fastify'
 import { TypeBoxTypeProvider } from '@fastify/type-provider-typebox'
+import cors from '@fastify/cors'
 import dotenv from 'dotenv'
 import databasePlugin from './plugins/database.js'
 import entitiesRoutes from './routes/entities/index.js'
@@ -18,6 +19,13 @@ const start = async () => {
       }
     }
   }).withTypeProvider<TypeBoxTypeProvider>()
+
+  await server.register(cors, {
+    origin: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+    credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization']
+  })
 
   await server.register(databasePlugin)
 

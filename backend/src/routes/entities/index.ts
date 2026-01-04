@@ -24,6 +24,34 @@ const entities: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
     return results
   })
 
+  server.get('/:id', {
+    schema: {
+      description: 'Get a single entity by ID',
+      tags: ['entities'],
+      params: Type.Object({
+        id: Type.String({ format: 'uuid' })
+      }),
+      response: {
+        200: EntitySchema,
+        404: Type.Object({
+          error: Type.String()
+        })
+      }
+    }
+  }, async function (request, reply) {
+    const entity = await this.db
+      .selectFrom('entities')
+      .selectAll()
+      .where('id', '=', request.params.id)
+      .executeTakeFirst()
+
+    if (!entity) {
+      return reply.code(404).send({ error: 'Entity not found' })
+    }
+
+    return entity
+  })
+
   server.post('/', {
     schema: {
       description: 'Create a new entity',
