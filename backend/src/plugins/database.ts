@@ -17,24 +17,27 @@ declare module 'fastify' {
   }
 }
 
-export default fp<DatabasePluginOptions>(async (fastify, opts) => {
-  const db = new Kysely<Database>({
-    dialect: new PostgresDialect({
-      pool: new Pool({
-        host: opts.host || process.env.DB_HOST || 'localhost',
-        port: opts.port || parseInt(process.env.DB_PORT || '5432'),
-        user: opts.user || process.env.DB_USER || 'postgres',
-        password: opts.password || process.env.DB_PASSWORD || 'postgres',
-        database: opts.database || process.env.DB_NAME || 'learning',
+export default fp<DatabasePluginOptions>(
+  async (fastify, opts) => {
+    const db = new Kysely<Database>({
+      dialect: new PostgresDialect({
+        pool: new Pool({
+          host: opts.host || process.env.DB_HOST || 'localhost',
+          port: opts.port || parseInt(process.env.DB_PORT || '5432'),
+          user: opts.user || process.env.DB_USER || 'postgres',
+          password: opts.password || process.env.DB_PASSWORD || 'postgres',
+          database: opts.database || process.env.DB_NAME || 'learning',
+        }),
       }),
-    }),
-  })
+    })
 
-  fastify.decorate('db', db)
+    fastify.decorate('db', db)
 
-  fastify.addHook('onClose', async (instance) => {
-    await instance.db.destroy()
-  })
-}, {
-  name: 'database-plugin'
-})
+    fastify.addHook('onClose', async (instance) => {
+      await instance.db.destroy()
+    })
+  },
+  {
+    name: 'database-plugin',
+  }
+)

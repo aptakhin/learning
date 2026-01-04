@@ -9,6 +9,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 async function migrateToLatest() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const db = new Kysely<any>({
     dialect: new PostgresDialect({
       pool: new Pool({
@@ -34,14 +35,18 @@ async function migrateToLatest() {
 
   results?.forEach((it) => {
     if (it.status === 'Success') {
+      // eslint-disable-next-line no-console
       console.log(`Migration "${it.migrationName}" was executed successfully`)
     } else if (it.status === 'Error') {
+      // eslint-disable-next-line no-console
       console.error(`Failed to execute migration "${it.migrationName}"`)
     }
   })
 
   if (error) {
+    // eslint-disable-next-line no-console
     console.error('Failed to migrate')
+    // eslint-disable-next-line no-console
     console.error(error)
     process.exit(1)
   }
@@ -49,4 +54,4 @@ async function migrateToLatest() {
   await db.destroy()
 }
 
-migrateToLatest()
+void migrateToLatest()

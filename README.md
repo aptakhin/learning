@@ -42,36 +42,90 @@ learning/
 ## Technology Stack
 
 ### Backend
-- **Language**: Typescript
-- **Key Dependencies**: (Add as you include them)
+- **Runtime**: Node.js 20
+- **Framework**: Fastify
+- **Database**: PostgreSQL with Kysely query builder
+- **Validation**: TypeBox
+- **Language**: TypeScript
 
 ### Frontend
-- **Framework**: (Add your framework)
-- **Key Dependencies**: (Add as you include them)
+- **Framework**: Alpine.js (vanilla JavaScript)
+- **Styling**: Inline CSS
+- **Server**: Nginx
 
 ### Infrastructure
 - Docker & Docker Compose
-- (Add database, caching, etc. as needed)
+- PostgreSQL database
+- Nginx web server
 
 ## Development
 
 ### Prerequisites
 - Docker and Docker Compose
-- Node.js (if applicable for frontend)
+- Node.js 20+ (for local development)
 
 ### Running Tests
 
 ```bash
 # Backend tests
 cd backend
-cargo test
+npm test
 
-# Frontend tests
-cd frontend
-# Add your test command
+# Watch mode
+npm run test:watch
+
+# Coverage
+npm run test:coverage
 ```
 
 ### Code Quality
+
+Both frontend and backend include ESLint and Prettier for code quality and consistency.
+
+**Backend linting:**
+```bash
+cd backend
+npm run lint          # Check for issues
+npm run lint:fix      # Auto-fix issues
+npm run format        # Format code
+```
+
+**Frontend linting:**
+```bash
+cd frontend
+npm run lint          # Check HTML structure
+npm run format        # Format code
+```
+
+**Linting rules enforce:**
+- Maximum cyclomatic complexity: 15
+- Maximum nesting depth: 4
+- Maximum lines per function: 100
+- Maximum parameters: 5
+- TypeScript strict type checking (backend)
+
+### Pre-commit Hooks
+
+Set up automatic linting before commits:
+
+```bash
+cd backend
+npm install -D husky lint-staged
+npx husky init
+echo "npx lint-staged" > .husky/pre-commit
+```
+
+Add to `backend/package.json`:
+```json
+{
+  "lint-staged": {
+    "src/**/*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  }
+}
+```
 
 ## Contributing
 

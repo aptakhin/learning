@@ -5,7 +5,12 @@
       "Bash(curl:*)",
       "Bash(docker compose:*)",
       "Bash(timeout 10 docker compose:*)",
-      "Bash(npm test:*)"
+      "Bash(npm test:*)",
+      "Bash(npm run lint:fix:*)",
+      "Bash(npm run lint)",
+      "Bash(npx lint-staged)",
+      "Bash(npx lint-staged --verbose)",
+      "Bash(cat:*)"
     ]
   }
 }

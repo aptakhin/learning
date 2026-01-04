@@ -22,7 +22,7 @@ describe('Entities API', () => {
     it('should return an array of entities', async () => {
       const response = await app.inject({
         method: 'GET',
-        url: '/entities'
+        url: '/entities',
       })
 
       expect(response.statusCode).toBe(200)
@@ -38,8 +38,8 @@ describe('Entities API', () => {
         payload: {
           kind: 'freelearning.org/Project',
           version: '1.0.0',
-          data: { name: 'Test Project', description: 'A test project' }
-        }
+          data: { name: 'Test Project', description: 'A test project' },
+        },
       })
 
       expect(response.statusCode).toBe(201)
@@ -61,8 +61,8 @@ describe('Entities API', () => {
         payload: {
           kind: 'invalid-format',
           version: '1.0.0',
-          data: {}
-        }
+          data: {},
+        },
       })
 
       expect(response.statusCode).toBe(400)
@@ -75,8 +75,8 @@ describe('Entities API', () => {
         payload: {
           kind: 'freelearning.org/Project',
           version: 'not-semver',
-          data: {}
-        }
+          data: {},
+        },
       })
 
       expect(response.statusCode).toBe(400)
@@ -87,8 +87,8 @@ describe('Entities API', () => {
         method: 'POST',
         url: '/entities',
         payload: {
-          kind: 'freelearning.org/Project'
-        }
+          kind: 'freelearning.org/Project',
+        },
       })
 
       expect(response.statusCode).toBe(400)
@@ -102,15 +102,18 @@ describe('Entities API', () => {
         url: `/entities/${entityId}`,
         payload: {
           version: '1.1.0',
-          data: { name: 'Updated Test Project', description: 'Updated description' }
-        }
+          data: { name: 'Updated Test Project', description: 'Updated description' },
+        },
       })
 
       expect(response.statusCode).toBe(200)
       const body = response.json()
       expect(body.id).toBe(entityId)
       expect(body.version).toBe('1.1.0')
-      expect(body.data).toEqual({ name: 'Updated Test Project', description: 'Updated description' })
+      expect(body.data).toEqual({
+        name: 'Updated Test Project',
+        description: 'Updated description',
+      })
       expect(body.updated_at).not.toBe(body.created_at)
     })
 
@@ -119,21 +122,24 @@ describe('Entities API', () => {
         method: 'PUT',
         url: `/entities/${entityId}`,
         payload: {
-          version: '1.2.0'
-        }
+          version: '1.2.0',
+        },
       })
 
       expect(response.statusCode).toBe(200)
       const body = response.json()
       expect(body.version).toBe('1.2.0')
-      expect(body.data).toEqual({ name: 'Updated Test Project', description: 'Updated description' })
+      expect(body.data).toEqual({
+        name: 'Updated Test Project',
+        description: 'Updated description',
+      })
     })
 
     it('should return 404 for non-existent entity', async () => {
       const response = await app.inject({
         method: 'PUT',
         url: '/entities/00000000-0000-0000-0000-000000000000',
-        payload: { version: '1.0.0' }
+        payload: { version: '1.0.0' },
       })
 
       expect(response.statusCode).toBe(404)
@@ -144,7 +150,7 @@ describe('Entities API', () => {
       const response = await app.inject({
         method: 'PUT',
         url: `/entities/${entityId}`,
-        payload: {}
+        payload: {},
       })
 
       expect(response.statusCode).toBe(400)
@@ -156,8 +162,8 @@ describe('Entities API', () => {
         method: 'PUT',
         url: `/entities/${entityId}`,
         payload: {
-          kind: 'invalid-format'
-        }
+          kind: 'invalid-format',
+        },
       })
 
       expect(response.statusCode).toBe(400)
@@ -168,8 +174,8 @@ describe('Entities API', () => {
         method: 'PUT',
         url: `/entities/${entityId}`,
         payload: {
-          version: 'invalid'
-        }
+          version: 'invalid',
+        },
       })
 
       expect(response.statusCode).toBe(400)
