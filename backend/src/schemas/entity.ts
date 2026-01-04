@@ -5,9 +5,9 @@ export const EntityDataSchema = Type.Record(Type.String(), Type.Any())
 export const EntitySchema = Type.Object({
   id: Type.String({ format: 'uuid' }),
   kind: Type.String({
-    pattern: '^[a-z0-9.-]+/[A-Z_]+$',
-    description: 'Entity kind in format: domain.tld/KIND_NAME',
-    examples: ['freelearning.org/PROJECT', 'freelearning.org/TASK']
+    pattern: '^[a-z0-9.-]+/[A-Z][A-Za-z0-9_]*$',
+    description: 'Entity kind in format: domain.tld/TypeName (type must start with capital letter)',
+    examples: ['freelearning.org/Project', 'freelearning.org/Task', 'freelearning.org/Note']
   }),
   version: Type.String({
     pattern: '^\\d+\\.\\d+\\.\\d+$',
@@ -21,9 +21,9 @@ export const EntitySchema = Type.Object({
 
 export const CreateEntitySchema = Type.Object({
   kind: Type.String({
-    pattern: '^[a-z0-9.-]+/[A-Z_]+$',
-    description: 'Entity kind in format: domain.tld/KIND_NAME',
-    examples: ['freelearning.org/PROJECT', 'freelearning.org/TASK']
+    pattern: '^[a-z0-9.-]+/[A-Z][A-Za-z0-9_]*$',
+    description: 'Entity kind in format: domain.tld/TypeName (type must start with capital letter)',
+    examples: ['freelearning.org/Project', 'freelearning.org/Task', 'freelearning.org/Note']
   }),
   version: Type.String({
     pattern: '^\\d+\\.\\d+\\.\\d+$',
@@ -35,7 +35,7 @@ export const CreateEntitySchema = Type.Object({
 
 export const UpdateEntitySchema = Type.Object({
   kind: Type.Optional(Type.String({
-    pattern: '^[a-z0-9.-]+/[A-Z_]+$'
+    pattern: '^[a-z0-9.-]+/[A-Z][A-Za-z0-9_]*$'
   })),
   version: Type.Optional(Type.String({
     pattern: '^\\d+\\.\\d+\\.\\d+$'

@@ -295,7 +295,7 @@
 
                         const allEntities = await response.json();
                         this.notes = allEntities
-                            .filter(entity => entity.kind === 'freelearning.org/NOTE')
+                            .filter(entity => entity.kind === 'freelearning.org/Note')
                             .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
                     } catch (err) {
                         this.error = 'Error loading notes: ' + err.message;
@@ -317,7 +317,7 @@
                                 'Content-Type': 'application/json',
                             },
                             body: JSON.stringify({
-                                kind: 'freelearning.org/NOTE',
+                                kind: 'freelearning.org/Note',
                                 version: '1.0.0',
                                 data: {
                                     text: this.newNoteText

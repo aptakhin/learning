@@ -36,7 +36,7 @@ describe('Entities API', () => {
         method: 'POST',
         url: '/entities',
         payload: {
-          kind: 'freelearning.org/PROJECT',
+          kind: 'freelearning.org/Project',
           version: '1.0.0',
           data: { name: 'Test Project', description: 'A test project' }
         }
@@ -45,7 +45,7 @@ describe('Entities API', () => {
       expect(response.statusCode).toBe(201)
       const body = response.json()
       expect(body).toHaveProperty('id')
-      expect(body.kind).toBe('freelearning.org/PROJECT')
+      expect(body.kind).toBe('freelearning.org/Project')
       expect(body.version).toBe('1.0.0')
       expect(body.data).toEqual({ name: 'Test Project', description: 'A test project' })
       expect(body).toHaveProperty('created_at')
@@ -73,7 +73,7 @@ describe('Entities API', () => {
         method: 'POST',
         url: '/entities',
         payload: {
-          kind: 'freelearning.org/PROJECT',
+          kind: 'freelearning.org/Project',
           version: 'not-semver',
           data: {}
         }
@@ -87,7 +87,7 @@ describe('Entities API', () => {
         method: 'POST',
         url: '/entities',
         payload: {
-          kind: 'freelearning.org/PROJECT'
+          kind: 'freelearning.org/Project'
         }
       })
 
