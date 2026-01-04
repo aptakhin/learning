@@ -7,9 +7,51 @@ services:
       POSTGRES_DB: learning
     ports:
       - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: learning
+      PORT: 3000
+      HOST: 0.0.0.0
+      NODE_ENV: production
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/health', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - app-network
+    command: sh -c "npm run migrate:latest && node dist/server.js"
+
   nginx:
     image: nginx:latest
     ports:
       - "8080:80"
     volumes:
       - ./frontend:/usr/share/nginx/html:ro
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

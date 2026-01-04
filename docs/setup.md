@@ -3,7 +3,6 @@
 ## Prerequisites
 
 - [Docker](https://www.docker.com/get-started) and Docker Compose
-- [Rust](https://www.rust-lang.org/tools/install) (for local backend development)
 
 ## Quick Start with Docker
 
@@ -83,5 +82,4 @@ TBD
 
 ## Additional Resources
 
-- Rust documentation: https://doc.rust-lang.org/
 - Docker Compose docs: https://docs.docker.com/compose/
