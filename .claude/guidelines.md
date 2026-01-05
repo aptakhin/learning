@@ -1,6 +1,25 @@
 ## Git Workflow
 Push force commands are forbidden for usage.
 
+### Commit Automation
+- **Always commit automatically** when a task is completed - do not ask for explicit approval
+- **Run pre-commit hooks** (linting, formatting, tests) and fix any issues before committing
+- If pre-commit hooks fail, fix the issues and retry the commit - do not skip or bypass them
+- Only ask for user intervention if hooks fail repeatedly and cannot be automatically fixed
+
+### Task Completion
+Tasks should be completed end-to-end, including:
+1. Implementation
+2. Fixing any linting/formatting issues
+3. Running and fixing any test failures
+4. Creating a git commit with a descriptive message
+
+## Communication Style
+- **Challenge and propose alternatives**: Don't just execute commands blindly - suggest better approaches when applicable
+- **Provide options**: When multiple valid solutions exist, present them with pros/cons and let the user choose
+- **Be proactive**: Identify potential issues or improvements and bring them up
+- **Question assumptions**: If a request seems suboptimal, explain why and offer alternatives
+
 ## Files
 All rm commands are strictly prohibited. They should be done manually.
 
