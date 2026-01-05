@@ -127,6 +127,16 @@ Add to `backend/package.json`:
 }
 ```
 
+**Windows Troubleshooting:**
+If you get `npx: command not found` or `npm: command not found` when committing:
+
+1. Open System Properties (Win + Pause/Break or search "Environment Variables")
+2. Click "Environment Variables"
+3. Under "System variables", find and select "Path", then click "Edit"
+4. Add the Node.js installation path (typically `C:\Program Files\nodejs\`)
+5. Click OK on all dialogs
+6. Restart your terminal/IDE for changes to take effect
+
 ## Contributing
 
 <!-- Update with your contribution guidelines -->
