@@ -11,11 +11,20 @@ This project demonstrates a complete web application architecture with:
 
 ## Quick Start
 
-```bash
-docker-compose up -d --build
+1. **Set up environment variables:**
+   ```bash
+   # Copy the example environment file
+   cp backend/.env.example backend/.env
 
-# Or run components individually (see Setup Guide)
-```
+   # Edit backend/.env with your local configuration if needed
+   ```
+
+2. **Start the application:**
+   ```bash
+   docker-compose up -d --build
+
+   # Or run components individually (see Setup Guide)
+   ```
 
 See the [Setup Guide](docs/setup.md) for detailed installation and development instructions.
 
@@ -63,6 +72,26 @@ learning/
 ### Prerequisites
 - Docker and Docker Compose
 - Node.js 20+ (for local development)
+
+### Environment Setup
+1. Copy `.env.example` to `.env` in the backend directory:
+   ```bash
+   cp backend/.env.example backend/.env
+   ```
+2. Update values in `.env` as needed for your local environment
+3. **Note**: `.env` files are gitignored and should never be committed
+
+### Developer-Specific Git Ignores
+For IDE or OS-specific files (like `.vscode/`, `.idea/`, `.DS_Store`), configure them in your global git config instead of the project's `.gitignore`:
+```bash
+# Configure global gitignore
+git config --global core.excludesfile ~/.gitignore_global
+
+# Add your IDE/OS files to ~/.gitignore_global
+echo ".vscode/" >> ~/.gitignore_global
+echo ".idea/" >> ~/.gitignore_global
+echo ".DS_Store" >> ~/.gitignore_global
+```
 
 ### Running Tests
 

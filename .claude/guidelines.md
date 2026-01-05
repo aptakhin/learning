@@ -4,6 +4,12 @@ Push force commands are forbidden for usage.
 ## Files
 All rm commands are strictly prohibited. They should be done manually.
 
+## Security
+- **NEVER** commit `.env` files or any files containing secrets, credentials, or sensitive data
+- Always use `.env.example` files to document required environment variables
+- Keep `.env` files in `.gitignore`
+- Developers should configure IDE/OS-specific ignores (like `.vscode/`, `.idea/`, `.DS_Store`) in their global git config, not in the project's `.gitignore`
+
 ## Cross-Platform Compatibility
 This project supports Windows, Linux, and macOS. When fixing issues:
 
